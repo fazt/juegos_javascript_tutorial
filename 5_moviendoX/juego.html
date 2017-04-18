@@ -1,0 +1,37 @@
+<canvas
+	id="lienzo"
+	width="500"
+	height="500"
+	style="border: 1px solid black"
+	>
+<script>
+	
+	var lienzo = document.getElementById('lienzo');
+	var ctx	   = lienzo.getContext("2d");
+
+	ctx.font = "30px Arial";
+	ctx.fillText("Mi primer juego", 10, 30);
+
+	ctx.fillRect(10, 30, 50, 50);
+
+
+	// moviendo mi jugador
+	var x = 50;
+	var spdX = 30;
+
+	ctx.fillText("J", x, 100);
+	//x = x + 50;
+	x += spdX;
+
+	ctx.fillText("J", x, 100);
+	x += spdX;
+
+	//x = x + 50;
+	ctx.fillText("J", x , 100);
+
+	x += spdX;
+	//x = x + 50;
+	ctx.fillText("J", x, 100);
+</script>
+
+</canvas>

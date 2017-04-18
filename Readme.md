@@ -1,5 +1,10 @@
 - canvas
 - contexto
-- 
-- 
--
+- cuadrado
+- variables
+- velocidadx
+- moviendoY
+- actualizar/update
+	- debugger
+	- console
+- intervalo
