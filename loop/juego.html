@@ -1,0 +1,69 @@
+<canvas
+	id="canvas"
+	width="500"
+	height="500"
+	style="border: 1px solid black"
+	>
+	</canvas>
+
+<script>
+
+	var canvas = document.getElementById('canvas');
+	var ctx	   = canvas.getContext("2d");
+
+	// settings
+	ctx.font = '30px Arial';
+	const HEIGHT = canvas.width;
+	const WIDTH = canvas.width;
+
+	const MESSAGE = 'BOUNCING';
+
+	// Player Settings
+	var x = 50;
+	var spdX = 30;
+	var y = 40;
+	var spdY = 5;
+	var name = 'P';
+
+	// Enemy Settings
+	var enemy_x = 150;
+	var enemy_spdX = 10;
+	var enemy_y = 350;
+	var enemy_spdY = 15;
+	var enemy = 'E';
+
+	// Game Loop
+	function update() {
+		// Player
+		x += spdX;
+		y += spdY;
+
+		ctx.fillText(name, x, y);
+
+		if (x > WIDTH || x < 0) {
+			console.log('BOUNCING');
+			spdX = -spdX;
+		}
+		if (y > HEIGHT || y < 0) {
+			console.log('BOUNCING');
+			spdY = -spdY;
+		}
+
+		// Enemy
+		enemy_x += enemy_spdX;
+		enemy_y += enemy_spdY;
+
+		ctx.fillText(enemy, enemy_x, enemy_y);
+
+		if (enemy_x > WIDTH || enemy_x < 0) {
+			console.log('BOUNCING');
+			enemy_spdX = -enemy_spdX;
+		}
+		if (enemy_y > HEIGHT || enemy_y < 0) {
+			console.log('BOUNCING');
+			enemy_spdY = -enemy_spdY;
+		}
+	}
+
+	setInterval(update, 40);
+</script>

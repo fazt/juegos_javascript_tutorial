@@ -1,0 +1,71 @@
+<canvas
+	id="canvas"
+	width="500"
+	height="500"
+	style="border: 1px solid black"
+	>
+	</canvas>
+
+<script>
+
+	var canvas = document.getElementById('canvas');
+	var ctx	   = canvas.getContext("2d");
+
+	// settings
+	ctx.font = '30px Arial';
+	const HEIGHT = canvas.width;
+	const WIDTH = canvas.width;
+
+	const MESSAGE = 'BOUNCING';
+
+	// Player Settings
+  var player = {
+    x: 50,
+    spdX: 30,
+    y: 40,
+    spdY: 5,
+    name: 'P'
+  };
+
+	// Enemy Settings
+  var enemy = {
+    x: 150,
+    spdX: 10,
+    y:350,
+    spdY: 15,
+    name: 'E'
+  };
+
+  var enemy2 = {
+    x: 200,
+    spdX: 10,
+    y:350,
+    spdY: 15,
+    name: 'E'
+  };
+
+  function updateEntity(entity) {
+    entity.x += entity.spdX;
+    entity.y += entity.spdY;
+
+    ctx.fillText(entity.name, entity.x, entity.y);
+
+    if (entity.x > WIDTH || entity.x < 0) {
+      console.log('BOUNCING');
+      entity.spdX = -entity.spdX;
+    }
+    if (entity.y > HEIGHT || entity.y < 0) {
+      console.log('BOUNCING');
+      entity.spdY = -entity.spdY;
+    }
+  }
+
+	// Game Loop
+	function update() {
+    updateEntity(enemy);
+    updateEntity(enemy2);
+    updateEntity(player);
+	}
+
+	setInterval(update, 40);
+</script>

@@ -1,0 +1,32 @@
+<!--
+	Canvas is just a box, that allows you
+	to paint your game
+
+	this is a definiton of the canvas
+ -->
+<canvas
+	id="canvas"
+	width="500"
+	height="500"
+	style="border: 1px solid black"
+	>
+<script>
+	alert('juego iniciado');
+
+	// obtaining the canvas context
+	var canvas = document.getElementById('canvas');
+	var ctx = canvas.getContext('2d');
+
+	// Modify Settings
+	ctx.font = '30px Arial'; // Font Used
+	ctx.fillStyle = 'red'; // Color fo the text and forms
+	ctx.globalAlpha = 0.5; // Transparency 0=invisible 1=visible
+
+	// 2. Draw Something()
+	ctx.fillText('Hello', 50, 50);
+	ctx.fillRect(50, 50, 100, 100);
+	ctx.clearRect(75, 75, 100, 100);
+
+</script>
+
+</canvas>

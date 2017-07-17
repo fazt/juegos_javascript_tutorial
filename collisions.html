@@ -1,0 +1,103 @@
+<canvas
+	id="canvas"
+	width="500"
+	height="500"
+	style="border: 1px solid black"
+	>
+	</canvas>
+
+<script>
+
+	var canvas = document.getElementById('canvas');
+	var ctx	   = canvas.getContext("2d");
+
+	// settings
+	ctx.font = '30px Arial';
+	const HEIGHT = canvas.width;
+	const WIDTH = canvas.width;
+
+	const MESSAGE = 'BOUNCING';
+
+	// Player Settings
+  var player = {
+    x: 50,
+    spdX: 30,
+    y: 40,
+    spdY: 5,
+    name: 'P'
+  };
+
+  /*
+    COLLISIONS - depends of the shapres
+    point (x:y)
+    circle
+    rect
+  */
+
+  // get distance between player and enemy
+  // return distance number
+  function getDistanceBetweenEntities(entity1, entity2) {
+    var vx = entity1.x - entity2.x;
+    var vy = entity1.y - entity2.y;
+    return Math.sqrt( vx * vx + vy * vy);
+  }
+
+  //return true or false if colliding
+  function testCollisionEntity(entity1, entity2) {
+    var distance = getDistanceBetweenEntities(entity1, entity2);
+    return distance < 30;
+  }
+
+  var enemyList = {};
+
+  Enemy('E1', 150, 350, 10, 15);
+  Enemy('E2', 250, 350, 10, -15);
+  Enemy('E3', 250, 350, 10, -8);
+
+	// Enemy Settings
+  function Enemy(id, x, y , spdX, spdY) {
+    var enemy = {
+      x: x,
+      spdX: spdX,
+      y: y,
+      spdY: spdY,
+      name: 'E',
+      id: id
+    };
+    enemyList[id] = enemy;
+  }
+
+
+  function updateEntity(entity) {
+    entity.x += entity.spdX;
+    entity.y += entity.spdY;
+
+    ctx.fillText(entity.name, entity.x, entity.y);
+
+    if (entity.x > WIDTH || entity.x < 0) {
+      console.log('BOUNCING');
+      entity.spdX = -entity.spdX;
+    }
+    if (entity.y > HEIGHT || entity.y < 0) {
+      console.log('BOUNCING');
+      entity.spdY = -entity.spdY;
+    }
+  }
+
+	// Game Loop
+	function update() {
+    ctx.clearRect(0, 0, WIDTH, HEIGHT);
+
+    for (var key in enemyList) {
+      updateEntity(enemyList[key]);
+      var isColliding = testCollisionEntity(player, enemyList[key]);
+      if (isColliding) {
+        console.log('colliding!');
+      }
+    }
+
+    updateEntity(player);
+	}
+
+	setInterval(update, 40);
+</script>
